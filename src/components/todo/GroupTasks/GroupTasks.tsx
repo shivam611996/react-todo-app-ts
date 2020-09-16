@@ -1,11 +1,16 @@
-import * as React from "react";
+import React from "react";
 
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import MuiSelect from "@material-ui/core/Select";
 
-const GroupTasks = ({ groupBy, handleGrouping }) => {
+interface IProps {
+  groupBy: string;
+  handleGrouping: () => void;
+}
+
+const GroupTasks = ({ groupBy, handleGrouping }: IProps) => {
   return (
     <FormControl>
       <InputLabel id="demo-simple-select-label">Group By</InputLabel>
@@ -23,10 +28,5 @@ const GroupTasks = ({ groupBy, handleGrouping }) => {
     </FormControl>
   );
 };
-
-// GroupTasks.propTypes = {
-//   groupBy: PropTypes.string,
-//   handleGrouping: PropTypes.func,
-// };
 
 export default GroupTasks;

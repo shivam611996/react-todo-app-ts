@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import TableBody from "@material-ui/core/TableBody";
 
@@ -10,21 +10,24 @@ const FilteredRows = ({
   handleStateChange,
   handleDialogOpen,
 }) => {
-  return <TableBody>{filteredTasks.length ? (
-    filteredTasks.map((task) => {
-      return (
-        <TodoTableRow
-          key={task.id}
-          task={task}
-          handleStateChange={handleStateChange}
-          handleDialogOpen={handleDialogOpen}
-        />
-      );
-    })
-  ) : (
-    <NoRecordFound />
-  )}
-  </TableBody>
+  return (
+    <TableBody>
+      {filteredTasks.length ? (
+        filteredTasks.map((task) => {
+          return (
+            <TodoTableRow
+              key={task.id}
+              task={task}
+              handleStateChange={handleStateChange}
+              handleDialogOpen={handleDialogOpen}
+            />
+          );
+        })
+      ) : (
+        <NoRecordFound />
+      )}
+    </TableBody>
+  );
 };
 
 // FilteredRows.propTypes = {

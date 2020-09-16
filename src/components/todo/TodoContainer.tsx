@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import CreateTask from "./CreateTask/CreateTask";
 import GroupTasks from "./GroupTasks/GroupTasks";
@@ -30,7 +30,9 @@ const TodoContainer = () => {
         <h1>ToDo App</h1>
       </header>
       <section>
-        <TasksContext.Provider value={{tasks, setTasks, searchValue, groupBy}}>
+        <TasksContext.Provider
+          value={{ tasks, setTasks, searchValue, groupBy }}
+        >
           <CreateTask />
           <div className="grouping-and-searching">
             <GroupTasks groupBy={groupBy} handleGrouping={handleGrouping} />

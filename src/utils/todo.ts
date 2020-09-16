@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import {ICreateData} from "../interfaces/interfaces";
+import {ICreateData} from "../interfaces/interfaces.d";
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {

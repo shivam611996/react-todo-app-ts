@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import MuiTextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -15,7 +15,7 @@ const SearchTasks = ({ handleSearch }) => {
           <InputAdornment position="start">
             <Search />
           </InputAdornment>
-        ),
+        )
       }}
     />
   );

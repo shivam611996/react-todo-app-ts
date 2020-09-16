@@ -7,44 +7,61 @@ module.exports = {
   target: "web",
   mode: "development",
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, "public"),
+    filename: "bundle.js"
   },
   resolve: {
-    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
   },
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: ["babel-loader", "eslint-loader"]
+      },
+      {
         test: /\.(ts|tsx)$/,
-        loader: "ts-loader",
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "ts-loader"
+          },
+          {
+            loader: "eslint-loader"
+          }
+        ]
       },
       {
         enforce: "pre",
         test: /\.js$/,
-        loader: "source-map-loader",
+        loader: "source-map-loader"
       },
       {
         test: /\.(sa|sc|c)ss$/,
-          use: [
-            {
+        use: [
+          {
             loader: MiniCssExtractPlugin.loader,
             options: {
-                hmr: true,
-              },
-            },
-            "css-loader",
-            "sass-loader"
-          ]
+              hmr: true
+            }
+          },
+          "css-loader",
+          "sass-loader"
+        ]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/i,
+        use: ["file-loader"]
       }
-    ],
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "public", "index.html"),
+      template: path.resolve(__dirname, "public", "index.html")
     }),
     new MiniCssExtractPlugin({
-      filename: "./src/index.css",
-    }),
-  ],
+      filename: "./src/index.css"
+    })
+  ]
 };

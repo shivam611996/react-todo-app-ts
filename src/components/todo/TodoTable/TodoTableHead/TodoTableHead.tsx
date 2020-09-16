@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
@@ -8,14 +8,14 @@ import TableSortLabel from "@material-ui/core/TableSortLabel";
 import { headCells } from "../../../../constants/todo";
 
 const TodoTableHead = ({ order, orderBy, onRequestSort }) => {
-  const createSortHandler = property => event => {
+  const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
   return (
     <TableHead>
       <TableRow>
-        {headCells.map(headCell =>
+        {headCells.map((headCell) =>
           headCell.id !== "actions" ? (
             <TableCell
               key={headCell.id}

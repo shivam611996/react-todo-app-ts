@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import IconButton from "@material-ui/core/IconButton";
 import AddCircle from "@material-ui/icons/AddCircle";

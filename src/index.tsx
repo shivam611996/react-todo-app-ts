@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import DateFnsUtils from "@date-io/date-fns";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -16,4 +16,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-

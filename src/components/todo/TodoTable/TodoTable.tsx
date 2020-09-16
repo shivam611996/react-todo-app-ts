@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -16,7 +16,7 @@ import {
 import { TasksContext } from "../../../contexts/TasksContext";
 import GroupedRows from "./GroupedRows/GroupedRows";
 import FilteredRows from "./FilteredRows/FilteredRows";
-import {ITask} from "../../../interfaces/interfaces";
+import { ITask } from "../../../interfaces/interfaces.d";
 
 import "./TodoTable.styles.scss";
 
@@ -24,8 +24,8 @@ interface IProps {
   type: string;
 }
 
-const TodoTable = ({ type }:IProps) => {
-  const {tasks, setTasks, searchValue, groupBy} = React.useContext(
+const TodoTable = ({ type }: IProps) => {
+  const { tasks, setTasks, searchValue, groupBy } = React.useContext(
     TasksContext
   );
   const [order, setOrder] = React.useState("desc");
@@ -97,19 +97,19 @@ const TodoTable = ({ type }:IProps) => {
               orderBy={orderBy}
               onRequestSort={handleRequestSort}
             />
-              {groupBy && groupBy !== "None" ? (
-                <GroupedRows
-                  groupedTasks={groupedTasks}
-                  handleStateChange={handleStateChange}
-                  handleDialogOpen={handleDialogOpen}
-                />
-              ) : (
-                <FilteredRows
-                  filteredTasks={filteredTasks}
-                  handleStateChange={handleStateChange}
-                  handleDialogOpen={handleDialogOpen}
-                />
-              )}
+            {groupBy && groupBy !== "None" ? (
+              <GroupedRows
+                groupedTasks={groupedTasks}
+                handleStateChange={handleStateChange}
+                handleDialogOpen={handleDialogOpen}
+              />
+            ) : (
+              <FilteredRows
+                filteredTasks={filteredTasks}
+                handleStateChange={handleStateChange}
+                handleDialogOpen={handleDialogOpen}
+              />
+            )}
           </Table>
         </TableContainer>
       </Paper>
