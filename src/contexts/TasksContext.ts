@@ -4,7 +4,7 @@ import {ITask} from "../interfaces/interfaces";
 interface ContextType  {
     tasks: ITask[];
     setTasks: Dispatch<SetStateAction<{ id: any; summary: any; description: any; createdOn: any; dueBy: any; priority: any; currentState: any; }[]>>;
-    searchValue: string;
+      searchValue: string;
     groupBy: string;
   };
 

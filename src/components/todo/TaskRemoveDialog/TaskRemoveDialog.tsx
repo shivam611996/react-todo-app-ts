@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as PropTypes from "prop-types";
 
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -9,15 +8,15 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { Button } from "@material-ui/core";
 
 import { TasksContext } from "../../../contexts/TasksContext";
-import {ITask} from "../../../interfaces/interfaces";
+import { ITask } from "../../../interfaces/interfaces";
 
 interface IProps {
-  taskDetails:ITask;
-    open: boolean;
-    handleClose: ()=>void
+  taskDetails: ITask;
+  open: boolean;
+  handleClose: () => void;
 }
 
-const TaskRemoveDialog = ({ taskDetails, open, handleClose }:IProps) => {
+const TaskRemoveDialog = ({ taskDetails, open, handleClose }: IProps) => {
   const setTasks = React.useContext(TasksContext)[1];
 
   const deleteTask = () => {

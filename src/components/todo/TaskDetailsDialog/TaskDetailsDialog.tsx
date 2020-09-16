@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { TextField, Select } from "formik-material-ui";
 import { DateTimePicker } from "formik-material-ui-pickers";
-import * as PropTypes from "prop-types";
+
 import { v4 as uuidv4 } from "uuid";
 
 import InputLabel from "@material-ui/core/InputLabel";
@@ -16,7 +16,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { Button, LinearProgress } from "@material-ui/core";
 
 import { TasksContext } from "../../../contexts/TasksContext";
-import {ITask} from "../../../interfaces/interfaces";
+import { ITask } from "../../../interfaces/interfaces";
 
 import "./TaskDetailsDialog.styles.scss";
 
@@ -30,30 +30,34 @@ const TaskDetailsSchema = Yup.object().shape({
     .max(500, "Max 500 characters allowed")
     .required("Required"),
   dueBy: Yup.date().required("Required"),
-  priority: Yup.string().matches(/(None|Low|Medium|High)/),
+  priority: Yup.string().matches(/(None|Low|Medium|High)/)
 });
-
 
 interface IProps {
   action: string;
-  taskDetails:ITask;
-    open: boolean;
-    handleClose: ()=>void
+  taskDetails: ITask;
+  open: boolean;
+  handleClose: () => void;
 }
 
-const TaskDetailsDialog = ({ action, taskDetails, open, handleClose }:IProps) => {
+const TaskDetailsDialog = ({
+  action,
+  taskDetails,
+  open,
+  handleClose
+}: IProps) => {
   const setTasks = React.useContext(TasksContext)[1];
   const isReadOnly = action === "read-only";
   const isEditAction = action === "edit";
 
   const onSubmit = (values, { setSubmitting }) => {
     if (action === "edit") {
-      setTasks((prevTasks) => {
-        const newTasks = prevTasks.map((task) => {
+      setTasks(prevTasks => {
+        const newTasks = prevTasks.map(task => {
           if (task.id === taskDetails.id) {
             return {
               ...task,
-              ...values,
+              ...values
             };
           }
           return task;
@@ -61,15 +65,15 @@ const TaskDetailsDialog = ({ action, taskDetails, open, handleClose }:IProps) =>
         return newTasks;
       });
     } else if (action === "create") {
-      setTasks((prevTasks) => {
+      setTasks(prevTasks => {
         return [
           ...prevTasks,
           {
             ...values,
             id: uuidv4(),
             createdOn: new Date(),
-            currentState: "Pending",
-          },
+            currentState: "Pending"
+          }
         ];
       });
     }
@@ -93,7 +97,7 @@ const TaskDetailsDialog = ({ action, taskDetails, open, handleClose }:IProps) =>
           summary: taskDetails.summary || "",
           description: taskDetails.description || "",
           dueBy: taskDetails.dueBy || new Date(),
-          priority: taskDetails.priority || "None",
+          priority: taskDetails.priority || "None"
         }}
         validationSchema={TaskDetailsSchema}
         onSubmit={onSubmit}
@@ -139,7 +143,7 @@ const TaskDetailsDialog = ({ action, taskDetails, open, handleClose }:IProps) =>
                     component={Select}
                     name="priority"
                     inputProps={{
-                      id: "task-priority",
+                      id: "task-priority"
                     }}
                     disabled={isReadOnly}
                   >
@@ -172,7 +176,7 @@ const TaskDetailsDialog = ({ action, taskDetails, open, handleClose }:IProps) =>
 };
 
 TaskDetailsDialog.defaultProps = {
-  taskDetails: {},
+  taskDetails: {}
 };
 
 export default TaskDetailsDialog;
