@@ -33,7 +33,7 @@ const TodoTable = ({ type }: IProps) => {
   const [open, setOpen] = React.useState(false);
   const [action, setAction] = React.useState<ITaskAction>("edit");
   const [taskDetails, setTaskDetails] = React.useState<ITask>();
-  const [filteredTasks, setFilteredTasks] = React.useState(tasks);
+  const [filteredTasks, setFilteredTasks] = React.useState([]);
   const [groupedTasks, setGroupedTasks] = React.useState({});
 
   React.useEffect(() => {
@@ -56,7 +56,7 @@ const TodoTable = ({ type }: IProps) => {
       );
       setGroupedTasks(_groupedTasks);
     } else {
-      setFilteredTasks(filteredTasks);
+      setFilteredTasks(_filteredTasks);
     }
   }, [groupBy, order, orderBy, searchValue, tasks, type]);
 
