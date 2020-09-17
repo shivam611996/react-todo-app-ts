@@ -6,17 +6,19 @@ import Tab from "@material-ui/core/Tab";
 import TabPanel from "./TabPanel/TabPanel";
 import TodoTable from "../TodoTable/TodoTable";
 
-const a11yProps = value => {
+const a11yProps = (value: string) => {
   return {
     id: `${value}-taks-tab`,
-    "aria-controls": `${value}-tasks-tabpanel`
+    "aria-controls": `${value}-tasks-tabpanel`,
   };
 };
 
-const TaskTabs = () => {
-  const [value, setValue] = React.useState("All");
+export type ITab = "All" | "Pending" | "Completed";
 
-  const handleChange = (event, newValue) => {
+const TaskTabs = () => {
+  const [value, setValue] = React.useState<ITab>("All");
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: ITab) => {
     setValue(newValue);
   };
 

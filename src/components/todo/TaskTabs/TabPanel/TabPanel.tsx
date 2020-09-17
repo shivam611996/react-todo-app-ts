@@ -2,7 +2,15 @@ import React from "react";
 
 import Box from "@material-ui/core/Box";
 
-const TabPanel = ({ children, value, index, ...other }) => {
+import { ITab } from "../TaskTabs";
+
+interface IProps {
+  children: JSX.Element;
+  index: ITab;
+  value: ITab;
+}
+
+const TabPanel = ({ children, value, index, ...other }: IProps) => {
   return (
     <div
       role="tabpanel"
@@ -15,11 +23,5 @@ const TabPanel = ({ children, value, index, ...other }) => {
     </div>
   );
 };
-
-// TabPanel.propTypes = {
-//   children: PropTypes.node,
-//   index: PropTypes.any.isRequired,
-//   value: PropTypes.any.isRequired,
-// };
 
 export default TabPanel;

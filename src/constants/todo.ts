@@ -1,4 +1,5 @@
 import { addDays } from "date-fns";
+import { v4 as uuidv4 } from "uuid";
 
 import { createData } from "../utils/todo";
 
@@ -16,24 +17,24 @@ interface IHeadCells {
 export const headCells: IHeadCells[] = [
   {
     id: "summary",
-    label: "Summary"
+    label: "Summary",
   },
   {
     id: "description",
-    label: "Description"
+    label: "Description",
   },
   {
     id: "createdOn",
-    label: "Created On"
+    label: "Created On",
   },
   { id: "dueBy", label: "Due By" },
   { id: "priority", label: "Priority" },
-  { id: "actions", label: "Actions" }
+  { id: "actions", label: "Actions" },
 ];
 
 export const rows = [
   createData(
-    1,
+    uuidv4(),
     "Eat afternoon food",
     "description of eating food",
     new Date(),
@@ -42,7 +43,7 @@ export const rows = [
     "Pending"
   ),
   createData(
-    2,
+    uuidv4(),
     "Go outside and play football",
     "description of playing football",
     addDays(new Date(), -2),
@@ -51,7 +52,7 @@ export const rows = [
     "Pending"
   ),
   createData(
-    3,
+    uuidv4(),
     "Go to market and buy something",
     "description of going to market",
     addDays(new Date(), -2),
@@ -60,7 +61,7 @@ export const rows = [
     "Pending"
   ),
   createData(
-    4,
+    uuidv4(),
     "Preapre office presentation",
     "description of preparing presentation",
     addDays(new Date(), -1),
@@ -69,7 +70,7 @@ export const rows = [
     "Completed"
   ),
   createData(
-    5,
+    uuidv4(),
     "Study unknown stuff",
     "description of studying",
     addDays(new Date(), -1),
@@ -78,12 +79,12 @@ export const rows = [
     "Completed"
   ),
   createData(
-    6,
+    uuidv4(),
     "Do excercise in the morning",
     "description of excercise",
     addDays(new Date(), -4),
     addDays(new Date(), 1),
     "High",
     "Completed"
-  )
+  ),
 ];

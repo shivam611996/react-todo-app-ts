@@ -48,7 +48,7 @@ export const createData: ICreateData = (
   priority,
   currentState
 ) => {
-  return { id, summary,   description, createdOn, dueBy, priority, currentState };
+  return { id, summary, description, createdOn, dueBy, priority, currentState };
 };
 
 export const searchByValue = (searchValue: string, tasks: ITask[]) => {

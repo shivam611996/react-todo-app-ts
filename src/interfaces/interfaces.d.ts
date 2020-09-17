@@ -1,5 +1,5 @@
 export interface ITask {
-  id: number;
+  id: string;
   summary: string;
   description: string;
   createdOn: Date;
@@ -12,7 +12,7 @@ export type ITaskAction = "edit" | "create" | "delete" | "read-only";
 
 export interface ICreateData {
   (
-    id: number,
+    id: string,
     summary: string,
     description: string,
     createdOn: Date,

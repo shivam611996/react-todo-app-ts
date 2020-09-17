@@ -30,7 +30,7 @@ const TaskDetailsSchema = Yup.object().shape({
     .max(500, "Max 500 characters allowed")
     .required("Required"),
   dueBy: Yup.date().required("Required"),
-  priority: Yup.string().matches(/(None|Low|Medium|High)/)
+  priority: Yup.string().matches(/(None|Low|Medium|High)/),
 });
 
 interface IProps {
@@ -40,24 +40,35 @@ interface IProps {
   handleClose: () => void;
 }
 
+interface IFormValues {
+  summary: string;
+  description: string;
+  dueBy: Date;
+  priority: string;
+}
+
+interface IFormActions {
+  setSubmitting: (value: boolean) => void;
+}
+
 const TaskDetailsDialog = ({
   action,
   taskDetails = {} as ITask,
   open,
-  handleClose
+  handleClose,
 }: IProps) => {
   const { setTasks } = React.useContext(TasksContext);
   const isReadOnly = action === "read-only";
   const isEditAction = action === "edit";
 
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = (values: IFormValues, { setSubmitting }: IFormActions) => {
     if (action === "edit") {
-      setTasks(prevTasks => {
-        const newTasks = prevTasks.map(task => {
+      setTasks((prevTasks) => {
+        const newTasks = prevTasks.map((task) => {
           if (task.id === taskDetails.id) {
             return {
               ...task,
-              ...values
+              ...values,
             };
           }
           return task;
@@ -65,15 +76,15 @@ const TaskDetailsDialog = ({
         return newTasks;
       });
     } else if (action === "create") {
-      setTasks(prevTasks => {
+      setTasks((prevTasks) => {
         return [
           ...prevTasks,
           {
             ...values,
             id: uuidv4(),
             createdOn: new Date(),
-            currentState: "Pending"
-          }
+            currentState: "Pending",
+          },
         ];
       });
     }
@@ -102,7 +113,7 @@ const TaskDetailsDialog = ({
           summary: taskDetails.summary || "",
           description: taskDetails.description || "",
           dueBy: taskDetails.dueBy || new Date(),
-          priority: taskDetails.priority || "None"
+          priority: taskDetails.priority || "None",
         }}
         validationSchema={TaskDetailsSchema}
         onSubmit={onSubmit}
@@ -148,7 +159,7 @@ const TaskDetailsDialog = ({
                     component={Select}
                     name="priority"
                     inputProps={{
-                      id: "task-priority"
+                      id: "task-priority",
                     }}
                     disabled={isReadOnly}
                   >
@@ -181,7 +192,7 @@ const TaskDetailsDialog = ({
 };
 
 TaskDetailsDialog.defaultProps = {
-  taskDetails: {} as ITask
+  taskDetails: {} as ITask,
 };
 
 export default TaskDetailsDialog;
