@@ -8,6 +8,8 @@ export interface ITask {
   currentState: string;
 }
 
+export type ITaskAction = "edit" | "create" | "delete" | "read-only";
+
 export interface ICreateData {
   (
     id: number,

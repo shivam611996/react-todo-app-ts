@@ -2,22 +2,33 @@ import { addDays } from "date-fns";
 
 import { createData } from "../utils/todo";
 
-export const headCells = [
+interface IHeadCells {
+  id:
+    | "summary"
+    | "description"
+    | "createdOn"
+    | "dueBy"
+    | "priority"
+    | "actions";
+  label: string;
+}
+
+export const headCells: IHeadCells[] = [
   {
     id: "summary",
-    label: "Summary",
+    label: "Summary"
   },
   {
     id: "description",
-    label: "Description",
+    label: "Description"
   },
   {
     id: "createdOn",
-    label: "Created On",
+    label: "Created On"
   },
   { id: "dueBy", label: "Due By" },
   { id: "priority", label: "Priority" },
-  { id: "actions", label: "Actions" },
+  { id: "actions", label: "Actions" }
 ];
 
 export const rows = [
@@ -74,5 +85,5 @@ export const rows = [
     addDays(new Date(), 1),
     "High",
     "Completed"
-  ),
+  )
 ];

@@ -6,25 +6,25 @@ import TableBody from "@material-ui/core/TableBody";
 
 import TodoTableRow from "../TodoTableRow/TodoTableRow";
 import NoRecordFound from "../NoRecordFound/NoRecordFound";
-import { ITask } from "../../../../interfaces/interfaces.d";
+import { ITask, ITaskAction } from "../../../../interfaces/interfaces.d";
 
 interface IProps {
   groupedTasks: { [key: string]: ITask[] };
   handleStateChange: (task: ITask) => void;
-  handleDialogOpen: (action: string, task: ITask) => void;
+  handleDialogOpen: (action: ITaskAction, task: ITask) => void;
 }
 
 const GroupedRows = ({
   groupedTasks,
   handleStateChange,
-  handleDialogOpen,
+  handleDialogOpen
 }: IProps): JSX.Element => {
   const groupKeys = Object.keys(groupedTasks);
 
   return (
     <TableBody>
       {groupKeys.length ? (
-        groupKeys.map((taskGroup) => {
+        groupKeys.map(taskGroup => {
           const tasks = groupedTasks[taskGroup];
           return (
             <React.Fragment key={taskGroup}>
@@ -33,7 +33,7 @@ const GroupedRows = ({
                   {taskGroup}
                 </TableCell>
               </TableRow>
-              {tasks.map((task) => (
+              {tasks.map(task => (
                 <TodoTableRow
                   key={task.id}
                   task={task}

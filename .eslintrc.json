@@ -21,10 +21,12 @@
     "airbnb",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier/react"
   ],
   "rules": {
     "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
     "interface-name-prefix": 0,
     "@typescript-eslint/interface-name-prefix": [
       "error",
@@ -47,6 +49,7 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-var-requires": "off",
+    "no-underscore-dangle": "off",
     "react/jsx-filename-extension": [
       1,
       {

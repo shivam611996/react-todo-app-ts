@@ -8,12 +8,12 @@ import NoRecordFound from "../NoRecordFound/NoRecordFound";
 const FilteredRows = ({
   filteredTasks,
   handleStateChange,
-  handleDialogOpen,
+  handleDialogOpen
 }) => {
   return (
     <TableBody>
       {filteredTasks.length ? (
-        filteredTasks.map((task) => {
+        filteredTasks.map(task => {
           return (
             <TodoTableRow
               key={task.id}

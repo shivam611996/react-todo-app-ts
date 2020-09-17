@@ -10,8 +10,19 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 
 import "./TodoTableRow.styles.scss";
+import { ITask, ITaskAction } from "../../../../interfaces/interfaces.d";
 
-const TodoTableRow = ({ task, handleStateChange, handleDialogOpen }) => {
+interface IProps {
+  task: ITask;
+  handleStateChange: (task: ITask) => void;
+  handleDialogOpen: (action: ITaskAction, task: ITask) => void;
+}
+
+const TodoTableRow = ({
+  task,
+  handleStateChange,
+  handleDialogOpen
+}: IProps) => {
   const isCompleted = task.currentState === "Completed";
   const currentState = isCompleted ? "Re-open" : "Done";
   const completedStyle = clsx(isCompleted && "completed");
@@ -35,7 +46,7 @@ const TodoTableRow = ({ task, handleStateChange, handleDialogOpen }) => {
       <TableCell className={completedStyle}>{task.priority}</TableCell>
       <TableCell>
         <IconButton
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             handleDialogOpen("edit", task);
           }}
@@ -46,7 +57,7 @@ const TodoTableRow = ({ task, handleStateChange, handleDialogOpen }) => {
         </IconButton>
         <Button
           className={isCompleted ? "task-re-open" : "task-done"}
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             handleStateChange(task);
           }}
@@ -55,7 +66,7 @@ const TodoTableRow = ({ task, handleStateChange, handleDialogOpen }) => {
           {currentState}
         </Button>
         <IconButton
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             handleDialogOpen("delete", task);
           }}
@@ -68,11 +79,5 @@ const TodoTableRow = ({ task, handleStateChange, handleDialogOpen }) => {
     </TableRow>
   );
 };
-
-// TodoTableRow.propTypes = {
-//   task: PropTypes.object,
-//   handleStateChange: PropTypes.func,
-//   handleDialogOpen: PropTypes.func,
-// };
 
 export default TodoTableRow;

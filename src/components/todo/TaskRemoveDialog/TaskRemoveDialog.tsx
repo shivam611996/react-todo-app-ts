@@ -11,16 +11,20 @@ import { TasksContext } from "../../../contexts/TasksContext";
 import { ITask } from "../../../interfaces/interfaces.d";
 
 interface IProps {
-  taskDetails: ITask;
+  taskDetails?: ITask;
   open: boolean;
   handleClose: () => void;
 }
 
-const TaskRemoveDialog = ({ taskDetails, open, handleClose }: IProps) => {
-  const setTasks = React.useContext(TasksContext)[1];
+const TaskRemoveDialog = ({
+  taskDetails = {} as ITask,
+  open,
+  handleClose
+}: IProps) => {
+  const { setTasks } = React.useContext(TasksContext);
 
   const deleteTask = () => {
-    setTasks((tasks) => tasks.filter((item) => item.id !== taskDetails.id));
+    setTasks(tasks => tasks.filter(item => item.id !== taskDetails.id));
     handleClose();
   };
 
@@ -49,7 +53,7 @@ const TaskRemoveDialog = ({ taskDetails, open, handleClose }: IProps) => {
 };
 
 TaskRemoveDialog.defaultProps = {
-  taskDetails: {},
+  taskDetails: {}
 };
 
 export default TaskRemoveDialog;

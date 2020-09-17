@@ -1,7 +1,11 @@
 import { format } from "date-fns";
-import {ICreateData} from "../interfaces/interfaces.d";
+import { ITask, ICreateData } from "../interfaces/interfaces.d";
 
-const descendingComparator = (a, b, orderBy) => {
+const descendingComparator = (
+  a: ITask,
+  b: ITask,
+  orderBy: keyof ITask
+): -1 | 1 | 0 => {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -11,14 +15,22 @@ const descendingComparator = (a, b, orderBy) => {
   return 0;
 };
 
-export const getComparator = (order, orderBy) => {
+export const getComparator = (order: string, orderBy: keyof ITask) => {
   return order === "desc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    ? (a: ITask, b: ITask) => descendingComparator(a, b, orderBy)
+    : (a: ITask, b: ITask) =>
+        -descendingComparator(a, b, orderBy) as 1 | -1 | 0;
 };
 
-export const stableSort = (array, comparator) => {
-  const stabilizedThis = array.map((el, index) => [el, index]);
+interface IComparator {
+  (a: ITask, b: ITask): 1 | -1 | 0;
+}
+
+export const stableSort = (array: Array<ITask>, comparator: IComparator) => {
+  const stabilizedThis: [ITask, number][] = array.map((el, index) => [
+    el,
+    index,
+  ]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
@@ -27,7 +39,7 @@ export const stableSort = (array, comparator) => {
   return stabilizedThis.map((el) => el[0]);
 };
 
-export const createData:ICreateData  = (
+export const createData: ICreateData = (
   id,
   summary,
   description,
@@ -36,14 +48,14 @@ export const createData:ICreateData  = (
   priority,
   currentState
 ) => {
-  return { id, summary, description, createdOn, dueBy, priority, currentState };
+  return { id, summary,   description, createdOn, dueBy, priority, currentState };
 };
 
-export const searchByValue = (searchValue, tasks) => {
+export const searchByValue = (searchValue: string, tasks: ITask[]) => {
   let filteredData = [];
   filteredData = tasks.filter((task) => {
     const { summary, description, createdOn, dueBy, priority } = task;
-    let rowValues = Object.values({
+    const rowValues = Object.values({
       summary,
       description,
       createdOn,
@@ -52,12 +64,12 @@ export const searchByValue = (searchValue, tasks) => {
     });
     return rowValues.some((value) => {
       const regex = new RegExp(searchValue, "gi");
-      if (typeof value == "string") {
+      if (typeof value === "string") {
         const matches = value.match(regex);
         if (matches && matches.length) {
           return true;
         }
-      } else if (typeof value == "object") {
+      } else if (typeof value === "object") {
         const matches = format(value, "yyyy-MM-dd").match(regex);
         if (matches && matches.length) {
           return true;
@@ -69,10 +81,20 @@ export const searchByValue = (searchValue, tasks) => {
   return filteredData;
 };
 
-export const groupByField = (fieldName, tasks) =>
-  tasks.reduce((result, task) => {
+interface IGroupByField {
+  [key: string]: ITask[];
+}
+
+export const groupByField = (
+  fieldName: keyof ITask,
+  tasks: ITask[]
+): IGroupByField =>
+  tasks.reduce((result: IGroupByField, task) => {
     return {
       ...result,
-      [task[fieldName]]: [...(result[task[fieldName]] || []), task],
+      [task[fieldName] as string]: [
+        ...(result[task[fieldName] as string] || []),
+        task,
+      ],
     };
   }, {});

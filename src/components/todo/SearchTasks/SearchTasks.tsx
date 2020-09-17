@@ -4,7 +4,15 @@ import MuiTextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Search from "@material-ui/icons/Search";
 
-const SearchTasks = ({ handleSearch }) => {
+interface IProps {
+  handleSearch: (
+    event: React.ChangeEvent<{
+      value: string;
+    }>
+  ) => void;
+}
+
+const SearchTasks = ({ handleSearch }: IProps) => {
   return (
     <MuiTextField
       label="Search field"

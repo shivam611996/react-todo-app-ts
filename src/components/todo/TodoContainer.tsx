@@ -14,14 +14,22 @@ const TodoContainer = () => {
   const [searchValue, setSearchValue] = React.useState("");
   const [groupBy, setGroupBy] = React.useState("None");
 
-  const handleGrouping = (event) => {
-    const groupBy = event.target.value;
-    setGroupBy(groupBy);
+  const handleGrouping = (
+    event: React.ChangeEvent<{
+      value: unknown;
+    }>
+  ) => {
+    const _groupBy = event.target.value as string;
+    setGroupBy(_groupBy);
   };
 
-  const handleSearch = (event) => {
-    const searchValue = event.target.value;
-    setSearchValue(searchValue);
+  const handleSearch = (
+    event: React.ChangeEvent<{
+      value: string;
+    }>
+  ) => {
+    const _searchValue = event.target.value;
+    setSearchValue(_searchValue);
   };
 
   return (

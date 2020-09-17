@@ -7,7 +7,11 @@ import MuiSelect from "@material-ui/core/Select";
 
 interface IProps {
   groupBy: string;
-  handleGrouping: () => void;
+  handleGrouping: (
+    event: React.ChangeEvent<{
+      value: unknown;
+    }>
+  ) => void;
 }
 
 const GroupTasks = ({ groupBy, handleGrouping }: IProps) => {

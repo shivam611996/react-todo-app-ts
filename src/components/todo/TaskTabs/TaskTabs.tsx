@@ -6,10 +6,10 @@ import Tab from "@material-ui/core/Tab";
 import TabPanel from "./TabPanel/TabPanel";
 import TodoTable from "../TodoTable/TodoTable";
 
-const a11yProps = (value) => {
+const a11yProps = value => {
   return {
     id: `${value}-taks-tab`,
-    "aria-controls": `${value}-tasks-tabpanel`,
+    "aria-controls": `${value}-tasks-tabpanel`
   };
 };
 

@@ -6,16 +6,23 @@ import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 
 import { headCells } from "../../../../constants/todo";
+import { ITask } from "../../../../interfaces/interfaces.d";
 
-const TodoTableHead = ({ order, orderBy, onRequestSort }) => {
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
+interface IProps {
+  order: "asc" | "desc";
+  orderBy: keyof ITask;
+  onRequestSort: (property: keyof ITask) => void;
+}
+
+const TodoTableHead = ({ order, orderBy, onRequestSort }: IProps) => {
+  const createSortHandler = (property: keyof ITask) => () => {
+    onRequestSort(property);
   };
 
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) =>
+        {headCells.map(headCell =>
           headCell.id !== "actions" ? (
             <TableCell
               key={headCell.id}
@@ -44,11 +51,5 @@ const TodoTableHead = ({ order, orderBy, onRequestSort }) => {
     </TableHead>
   );
 };
-
-// TodoTableHead.propTypes = {
-//   order: PropTypes.oneOf(["asc", "desc"]),
-//   orderBy: PropTypes.string,
-//   onRequestSort: PropTypes.func,
-// };
 
 export default TodoTableHead;

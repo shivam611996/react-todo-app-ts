@@ -11,12 +11,12 @@ import {
   stableSort,
   getComparator,
   searchByValue,
-  groupByField,
+  groupByField
 } from "../../../utils/todo";
 import { TasksContext } from "../../../contexts/TasksContext";
 import GroupedRows from "./GroupedRows/GroupedRows";
 import FilteredRows from "./FilteredRows/FilteredRows";
-import { ITask } from "../../../interfaces/interfaces.d";
+import { ITask, ITaskAction } from "../../../interfaces/interfaces.d";
 
 import "./TodoTable.styles.scss";
 
@@ -28,48 +28,52 @@ const TodoTable = ({ type }: IProps) => {
   const { tasks, setTasks, searchValue, groupBy } = React.useContext(
     TasksContext
   );
-  const [order, setOrder] = React.useState("desc");
-  const [orderBy, setOrderBy] = React.useState("createdOn");
+  const [order, setOrder] = React.useState<"asc" | "desc">("desc");
+  const [orderBy, setOrderBy] = React.useState<keyof ITask>("createdOn");
   const [open, setOpen] = React.useState(false);
-  const [action, setAction] = React.useState("edit");
+  const [action, setAction] = React.useState<ITaskAction>("edit");
   const [taskDetails, setTaskDetails] = React.useState<ITask>();
   const [filteredTasks, setFilteredTasks] = React.useState(tasks);
   const [groupedTasks, setGroupedTasks] = React.useState({});
 
   React.useEffect(() => {
-    let filteredTasks = stableSort(tasks, getComparator(order, orderBy));
+    let _filteredTasks = stableSort(tasks, getComparator(order, orderBy));
 
     if (type !== "All") {
-      filteredTasks = filteredTasks.filter(
-        (task) => task.currentState === type
+      _filteredTasks = _filteredTasks.filter(
+        task => task.currentState === type
       );
     }
 
     if (searchValue) {
-      filteredTasks = searchByValue(searchValue, filteredTasks);
+      _filteredTasks = searchByValue(searchValue, _filteredTasks);
     }
 
     if (groupBy && groupBy !== "None") {
-      const groupedTasks = groupByField(groupBy, filteredTasks);
-      setGroupedTasks(groupedTasks);
+      const _groupedTasks = groupByField(
+        groupBy as keyof ITask,
+        _filteredTasks
+      );
+      setGroupedTasks(_groupedTasks);
     } else {
       setFilteredTasks(filteredTasks);
     }
   }, [groupBy, order, orderBy, searchValue, tasks, type]);
 
-  const handleRequestSort = (event, property) => {
+  const handleRequestSort = (property: keyof ITask) => {
     const isAsc = orderBy === property && order === "asc";
     const newOrder = isAsc ? "desc" : "asc";
     setOrder(newOrder);
     setOrderBy(property);
   };
 
-  const handleStateChange = (task) => {
-    setTasks((tasks) => {
-      const newTasks = [...tasks].map((item) => {
+  const handleStateChange = (task: ITask) => {
+    setTasks(prevTasks => {
+      const newTasks = prevTasks.map(item => {
         if (item.id === task.id) {
-          task.currentState =
+          const currentState =
             task.currentState === "Completed" ? "Pending" : "Completed";
+          return { ...item, currentState };
         }
         return item;
       });
@@ -77,9 +81,9 @@ const TodoTable = ({ type }: IProps) => {
     });
   };
 
-  const handleDialogOpen = (action, task) => {
+  const handleDialogOpen = (_action: ITaskAction, task: ITask) => {
     setTaskDetails({ ...task });
-    setAction(action);
+    setAction(_action);
     setOpen(true);
   };
 
