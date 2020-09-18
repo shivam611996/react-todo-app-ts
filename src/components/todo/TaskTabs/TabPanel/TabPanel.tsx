@@ -2,7 +2,7 @@ import React from "react";
 
 import Box from "@material-ui/core/Box";
 
-import { ITab } from "../TaskTabs";
+import { ITab } from "../../../../interfaces/interfaces";
 
 interface IProps {
   children: JSX.Element;

@@ -21,3 +21,18 @@ export interface ICreateData {
     currentState: string
   ): ITask;
 }
+
+export type ITab = "All" | "Pending" | "Completed";
+
+export type IOrder = "asc" | "desc";
+
+export type IOrderBy =
+  | "summary"
+  | "description"
+  | "createdOn"
+  | "dueBy"
+  | "priority";
+
+export type IGroupBy = "createdOn" | "dueBy" | "priority";
+
+export type IGroupByWithNone = IGroupBy | "None";

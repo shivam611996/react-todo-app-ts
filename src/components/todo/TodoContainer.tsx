@@ -6,20 +6,21 @@ import SearchTasks from "./SearchTasks/SearchTasks";
 import TaskTabs from "./TaskTabs/TaskTabs";
 import { rows } from "../../constants/todo";
 import { TasksContext } from "../../contexts/TasksContext";
+import { IGroupByWithNone } from "../../interfaces/interfaces";
 
 import "./TodoContainer.styles.scss";
 
 const TodoContainer = () => {
   const [tasks, setTasks] = React.useState(rows);
   const [searchValue, setSearchValue] = React.useState("");
-  const [groupBy, setGroupBy] = React.useState("None");
+  const [groupBy, setGroupBy] = React.useState<IGroupByWithNone>("None");
 
   const handleGrouping = (
     event: React.ChangeEvent<{
-      value: unknown;
+      value: IGroupByWithNone;
     }>
   ) => {
-    const _groupBy = event.target.value as string;
+    const _groupBy = event.target.value;
     setGroupBy(_groupBy);
   };
 

@@ -16,20 +16,27 @@ import {
 import { TasksContext } from "../../../contexts/TasksContext";
 import GroupedRows from "./GroupedRows/GroupedRows";
 import FilteredRows from "./FilteredRows/FilteredRows";
-import { ITask, ITaskAction } from "../../../interfaces/interfaces.d";
+import {
+  ITask,
+  ITaskAction,
+  ITab,
+  IOrder,
+  IOrderBy,
+  IGroupBy,
+} from "../../../interfaces/interfaces";
 
 import "./TodoTable.styles.scss";
 
 interface IProps {
-  type: string;
+  type: ITab;
 }
 
 const TodoTable = ({ type }: IProps) => {
   const { tasks, setTasks, searchValue, groupBy } = React.useContext(
     TasksContext
   );
-  const [order, setOrder] = React.useState<"asc" | "desc">("desc");
-  const [orderBy, setOrderBy] = React.useState<keyof ITask>("createdOn");
+  const [order, setOrder] = React.useState<IOrder>("desc");
+  const [orderBy, setOrderBy] = React.useState<IOrderBy>("createdOn");
   const [open, setOpen] = React.useState(false);
   const [action, setAction] = React.useState<ITaskAction>("edit");
   const [taskDetails, setTaskDetails] = React.useState<ITask>();
@@ -50,17 +57,14 @@ const TodoTable = ({ type }: IProps) => {
     }
 
     if (groupBy && groupBy !== "None") {
-      const _groupedTasks = groupByField(
-        groupBy as keyof ITask,
-        _filteredTasks
-      );
+      const _groupedTasks = groupByField(groupBy as IGroupBy, _filteredTasks);
       setGroupedTasks(_groupedTasks);
     } else {
       setFilteredTasks(_filteredTasks);
     }
   }, [groupBy, order, orderBy, searchValue, tasks, type]);
 
-  const handleRequestSort = (property: keyof ITask) => {
+  const handleRequestSort = (property: IOrderBy) => {
     const isAsc = orderBy === property && order === "asc";
     const newOrder = isAsc ? "desc" : "asc";
     setOrder(newOrder);

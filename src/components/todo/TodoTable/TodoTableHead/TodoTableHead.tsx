@@ -6,7 +6,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 
 import { headCells } from "../../../../constants/todo";
-import { ITask } from "../../../../interfaces/interfaces.d";
+import { ITask } from "../../../../interfaces/interfaces";
 
 interface IProps {
   order: "asc" | "desc";

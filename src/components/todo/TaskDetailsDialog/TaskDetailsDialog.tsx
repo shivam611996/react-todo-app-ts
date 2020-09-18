@@ -16,7 +16,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { Button, LinearProgress } from "@material-ui/core";
 
 import { TasksContext } from "../../../contexts/TasksContext";
-import { ITask } from "../../../interfaces/interfaces.d";
+import { ITask } from "../../../interfaces/interfaces";
 
 import "./TaskDetailsDialog.styles.scss";
 

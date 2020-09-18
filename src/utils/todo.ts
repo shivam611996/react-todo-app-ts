@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { ITask, ICreateData } from "../interfaces/interfaces.d";
+import { ITask, ICreateData, IOrder, IOrderBy } from "../interfaces/interfaces";
 
 const descendingComparator = (
   a: ITask,
@@ -15,7 +15,7 @@ const descendingComparator = (
   return 0;
 };
 
-export const getComparator = (order: string, orderBy: keyof ITask) => {
+export const getComparator = (order: IOrder, orderBy: IOrderBy) => {
   return order === "desc"
     ? (a: ITask, b: ITask) => descendingComparator(a, b, orderBy)
     : (a: ITask, b: ITask) =>
@@ -85,8 +85,10 @@ interface IGroupByField {
   [key: string]: ITask[];
 }
 
+type IGroupBy = "createdOn" | "dueBy" | "priority";
+
 export const groupByField = (
-  fieldName: keyof ITask,
+  fieldName: IGroupBy,
   tasks: ITask[]
 ): IGroupByField =>
   tasks.reduce((result: IGroupByField, task) => {

@@ -4,7 +4,7 @@ import TableBody from "@material-ui/core/TableBody";
 
 import TodoTableRow from "../TodoTableRow/TodoTableRow";
 import NoRecordFound from "../NoRecordFound/NoRecordFound";
-import { ITask, ITaskAction } from "../../../../interfaces/interfaces.d";
+import { ITask, ITaskAction } from "../../../../interfaces/interfaces";
 
 interface IProps {
   filteredTasks: ITask[];

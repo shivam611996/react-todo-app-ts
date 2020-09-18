@@ -10,7 +10,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 
 import "./TodoTableRow.styles.scss";
-import { ITask, ITaskAction } from "../../../../interfaces/interfaces.d";
+import { ITask, ITaskAction } from "../../../../interfaces/interfaces";
 
 interface IProps {
   task: ITask;

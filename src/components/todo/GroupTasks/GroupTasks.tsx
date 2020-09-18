@@ -5,11 +5,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import MuiSelect from "@material-ui/core/Select";
 
+import { IGroupByWithNone } from "../../../interfaces/interfaces";
+
 interface IProps {
-  groupBy: string;
+  groupBy: IGroupByWithNone;
   handleGrouping: (
     event: React.ChangeEvent<{
-      value: unknown;
+      value: IGroupByWithNone;
     }>
   ) => void;
 }

@@ -5,6 +5,7 @@ import Tab from "@material-ui/core/Tab";
 
 import TabPanel from "./TabPanel/TabPanel";
 import TodoTable from "../TodoTable/TodoTable";
+import { ITab } from "../../../interfaces/interfaces";
 
 const a11yProps = (value: string) => {
   return {
@@ -12,8 +13,6 @@ const a11yProps = (value: string) => {
     "aria-controls": `${value}-tasks-tabpanel`,
   };
 };
-
-export type ITab = "All" | "Pending" | "Completed";
 
 const TaskTabs = () => {
   const [value, setValue] = React.useState<ITab>("All");

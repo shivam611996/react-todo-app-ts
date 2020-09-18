@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { Button } from "@material-ui/core";
 
 import { TasksContext } from "../../../contexts/TasksContext";
-import { ITask } from "../../../interfaces/interfaces.d";
+import { ITask } from "../../../interfaces/interfaces";
 
 interface IProps {
   taskDetails?: ITask;

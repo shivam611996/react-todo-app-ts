@@ -1,11 +1,11 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { ITask } from "../interfaces/interfaces.d";
+import { ITask, IGroupByWithNone } from "../interfaces/interfaces";
 
 interface IContextType {
   tasks: ITask[];
   setTasks: Dispatch<SetStateAction<ITask[]>>;
   searchValue: string;
-  groupBy: string;
+  groupBy: IGroupByWithNone;
 }
 
 const initialContext: IContextType = {
