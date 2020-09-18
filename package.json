@@ -9,8 +9,7 @@
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "fix-code": "prettier-eslint --write 'src/**/*.{ts,tsx,js,jsx}' ",
-    "fix-styles": "prettier-stylelint --write 'src/**/*.{css,scss}' "
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --quiet --fix"
   },
   "author": "",
   "license": "ISC",

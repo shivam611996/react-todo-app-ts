@@ -11,7 +11,7 @@ import {
   stableSort,
   getComparator,
   searchByValue,
-  groupByField
+  groupByField,
 } from "../../../utils/todo";
 import { TasksContext } from "../../../contexts/TasksContext";
 import GroupedRows from "./GroupedRows/GroupedRows";
@@ -41,7 +41,7 @@ const TodoTable = ({ type }: IProps) => {
 
     if (type !== "All") {
       _filteredTasks = _filteredTasks.filter(
-        task => task.currentState === type
+        (task) => task.currentState === type
       );
     }
 
@@ -68,8 +68,8 @@ const TodoTable = ({ type }: IProps) => {
   };
 
   const handleStateChange = (task: ITask) => {
-    setTasks(prevTasks => {
-      const newTasks = prevTasks.map(item => {
+    setTasks((prevTasks) => {
+      const newTasks = prevTasks.map((item) => {
         if (item.id === task.id) {
           const currentState =
             task.currentState === "Completed" ? "Pending" : "Completed";

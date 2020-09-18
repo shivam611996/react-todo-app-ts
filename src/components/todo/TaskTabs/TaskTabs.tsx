@@ -18,7 +18,10 @@ export type ITab = "All" | "Pending" | "Completed";
 const TaskTabs = () => {
   const [value, setValue] = React.useState<ITab>("All");
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: ITab) => {
+  const handleChange = (
+    event: React.ChangeEvent<Record<string, unknown>>,
+    newValue: ITab
+  ) => {
     setValue(newValue);
   };
 

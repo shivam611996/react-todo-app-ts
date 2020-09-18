@@ -14,11 +14,12 @@ module.exports = (env, options) => {
     resolve: {
       extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
     },
+    devtool: isDevMode ? "source-map" : false,
     module: {
       rules: [{
           test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader", "ts-loader"]
+          use: ["babel-loader", "ts-loader", "eslint-loader"]
         },
         {
           enforce: "pre",
