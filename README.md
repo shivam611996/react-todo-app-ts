@@ -1,13 +1,16 @@
-Quick Start
+# Quick Start
 
-# Install dependencies
+## npm install
+Install dependencies
 
-npm install
+## npm start
+Serve on localhost:8080
 
-# Serve on localhost:8080
+## npm run build
+Build for production
 
-npm start
+## npm run deploy
+Deploy your changes on GitHub
 
-# Build for production
+### Live URL: http://shivam611996.github.io/react-todo-app-ts
 
-npm run build
