@@ -23,14 +23,10 @@ const SearchTasks = ({ handleSearch }: IProps) => {
           <InputAdornment position="start">
             <Search />
           </InputAdornment>
-        )
+        ),
       }}
     />
   );
 };
-
-// SearchTasks.propTypes = {
-//   handleSearch: PropTypes.func,
-// };
 
 export default SearchTasks;
