@@ -22,7 +22,7 @@ const TodoTableHead = ({ order, orderBy, onRequestSort }: IProps) => {
   return (
     <TableHead>
       <TableRow>
-        {headCells.map(headCell =>
+        {headCells.map((headCell) =>
           headCell.id !== "actions" ? (
             <TableCell
               key={headCell.id}

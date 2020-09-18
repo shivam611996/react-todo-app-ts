@@ -14,7 +14,7 @@ const initialContext: IContextType = {
     throw new Error("setTasks function must be overridden");
   },
   searchValue: "",
-  groupBy: "None"
+  groupBy: "None",
 };
 
 export const TasksContext = createContext<IContextType>(initialContext);

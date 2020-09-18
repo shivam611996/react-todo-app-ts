@@ -19,12 +19,12 @@ interface IProps {
 const TaskRemoveDialog = ({
   taskDetails = {} as ITask,
   open,
-  handleClose
+  handleClose,
 }: IProps) => {
   const { setTasks } = React.useContext(TasksContext);
 
   const deleteTask = () => {
-    setTasks(tasks => tasks.filter(item => item.id !== taskDetails.id));
+    setTasks((tasks) => tasks.filter((item) => item.id !== taskDetails.id));
     handleClose();
   };
 
@@ -53,7 +53,7 @@ const TaskRemoveDialog = ({
 };
 
 TaskRemoveDialog.defaultProps = {
-  taskDetails: {}
+  taskDetails: {},
 };
 
 export default TaskRemoveDialog;

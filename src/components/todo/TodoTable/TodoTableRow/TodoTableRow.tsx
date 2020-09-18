@@ -21,7 +21,7 @@ interface IProps {
 const TodoTableRow = ({
   task,
   handleStateChange,
-  handleDialogOpen
+  handleDialogOpen,
 }: IProps) => {
   const isCompleted = task.currentState === "Completed";
   const currentState = isCompleted ? "Re-open" : "Done";
@@ -46,7 +46,7 @@ const TodoTableRow = ({
       <TableCell className={completedStyle}>{task.priority}</TableCell>
       <TableCell>
         <IconButton
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             handleDialogOpen("edit", task);
           }}
@@ -57,7 +57,7 @@ const TodoTableRow = ({
         </IconButton>
         <Button
           className={isCompleted ? "task-re-open" : "task-done"}
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             handleStateChange(task);
           }}
@@ -66,7 +66,7 @@ const TodoTableRow = ({
           {currentState}
         </Button>
         <IconButton
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             handleDialogOpen("delete", task);
           }}
