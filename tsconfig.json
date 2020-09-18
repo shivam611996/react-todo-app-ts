@@ -4,7 +4,7 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "rootDir": "src",
-    "outDir": "public",
+    "outDir": "dist",
     "preserveConstEnums": true,
     "removeComments": true,
     "sourceMap": true,
